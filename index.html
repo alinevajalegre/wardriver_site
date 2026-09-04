@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WARDRIVER — mapeamento de redes Wi-Fi</title>
+<meta name="description" content="Simulação do painel web e do aplicativo mobile do WARDRIVER, dispositivo com ESP32 para mapear redes Wi-Fi de uma região.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cabecalho">
+  <div class="container">
+    <a class="logo" href="index.html"><span class="ponto" aria-hidden="true"></span>WARDRIVER</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">
+      <span></span>
+      <span class="oculto">Abrir menu</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+      <ul>
+        <li><a href="index.html" aria-current="page">início</a></li>
+        <li><a href="sobre.html">sobre</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <section class="topo-demo">
+    <div class="container">
+      <h1>WARDRIVER: veja o painel e o app funcionando</h1>
+      <p class="intro">Um projeto de faculdade que usa um ESP32 barato pra mapear redes Wi-Fi. Ele tem duas telas: o painel web, pra acompanhar a coleta em tempo real ou revisar depois, e um app mobile, pra sincronizar o cartão SD do dispositivo direto do celular. As telas abaixo são uma simulação de como cada uma funciona, com dados de exemplo.</p>
+
+      <div class="abas" role="tablist" aria-label="Escolher visualização">
+        <button type="button" role="tab" id="aba-painel" aria-controls="tela-painel" aria-selected="true">Painel web</button>
+        <button type="button" role="tab" id="aba-app" aria-controls="tela-app" aria-selected="false">App mobile</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="container container-largo">
+
+      <div class="tela ativa" id="tela-painel" role="tabpanel" aria-labelledby="aba-painel">
+        <div class="caixa-escura">
+
+          <div class="filtros">
+            <span class="rotulo">criptografia</span>
+            <button class="opcao" type="button" data-filtro="todas" aria-pressed="true">todas</button>
+            <button class="opcao" type="button" data-filtro="open" aria-pressed="false">open</button>
+            <button class="opcao" type="button" data-filtro="wep" aria-pressed="false">wep</button>
+            <button class="opcao" type="button" data-filtro="wpa" aria-pressed="false">wpa</button>
+            <button class="opcao" type="button" data-filtro="wpa2" aria-pressed="false">wpa2</button>
+            <input type="search" id="busca-painel" placeholder="buscar ssid / bssid" aria-label="Buscar por SSID ou BSSID">
+            <button class="limpar" type="button" id="limpar-filtros">limpar filtros</button>
+          </div>
+
+          <div class="colunas">
+            <div class="caixa">
+              <div class="titulo"><span>mapa de cobertura</span></div>
+              <div class="mapa">
+                <img src="img/mapa-catanduva.jpg" alt="Mapa do centro de Catanduva-SP, região onde as redes foram coletadas" width="640" height="480">
+              </div>
+            </div>
+
+            <div class="caixa">
+              <div class="titulo"><span>redes coletadas</span><span id="contagem-tabela">9 / 9</span></div>
+              <div class="tabela-wrap">
+                <table id="tabela-redes">
+                  <thead>
+                    <tr><th>SSID</th><th>BSSID</th><th>RSSI</th><th>CH</th><th>CRIPTO</th><th>COORD.</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr data-tipo="wep"><td>CLARO_WIFI_04</td><td>EC:08:6B:53:DE</td><td>-38 dBm</td><td>6</td><td><span class="badge wep">WEP</span></td><td>-21.1372, -48.9761</td></tr>
+                    <tr data-tipo="wpa2"><td>Wardriver_Lab</td><td>00:39:56:3C:AB</td><td>-40 dBm</td><td>6</td><td><span class="badge">WPA2</span></td><td>-21.1370, -48.9764</td></tr>
+                    <tr data-tipo="open"><td>rede_aberta_lanchonete</td><td>18:D6:C7:2A:44</td><td>-41 dBm</td><td>1</td><td><span class="badge open">OPEN</span></td><td>-21.1369, -48.9759</td></tr>
+                    <tr data-tipo="wpa"><td>ZTE_5GHz_F1</td><td>00:1D:BF:9F:49</td><td>-42 dBm</td><td>9</td><td><span class="badge">WPA</span></td><td>-21.1375, -48.9757</td></tr>
+                    <tr data-tipo="wpa2"><td>BlueLink-IoT</td><td>FC:EC:DA:7A:9C</td><td>-44 dBm</td><td>9</td><td><span class="badge">WPA2</span></td><td>-21.1368, -48.9762</td></tr>
+                    <tr data-tipo="wpa2"><td>Repetidor_Sala</td><td>C8:3A:35:FD:10</td><td>-45 dBm</td><td>6</td><td><span class="badge">WPA2</span></td><td>-21.1374, -48.9766</td></tr>
+                    <tr data-tipo="wpa2"><td>DLINK-AABBCC</td><td>10:62:EB:3C:F4</td><td>-47 dBm</td><td>1</td><td><span class="badge">WPA2</span></td><td>-21.1371, -48.9755</td></tr>
+                    <tr data-tipo="open"><td>net_visitantes</td><td>3C:A6:2F:04:9D</td><td>-52 dBm</td><td>11</td><td><span class="badge open">OPEN</span></td><td>-21.1366, -48.9769</td></tr>
+                    <tr data-tipo="wpa2"><td>ESCRITORIO_01</td><td>44:32:C8:87:5C</td><td>-55 dBm</td><td>5</td><td><span class="badge">WPA2</span></td><td>-21.1377, -48.9760</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tela" id="tela-app" role="tabpanel" aria-labelledby="aba-app" hidden>
+        <div class="celular-wrap">
+          <div class="celular">
+
+            <div class="celular-app">
+              <div class="cabecalho-app">
+                <span class="titulo">Wardriver Sync</span>
+                <span class="status">Desconectado</span>
+              </div>
+
+              <div class="subtitulo-app">
+                <h3>Redes</h3>
+                <span class="contagem">9 únicas</span>
+              </div>
+
+              <div class="opcoes-app" role="group" aria-label="Filtrar redes">
+                <button type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+                <button type="button" data-filtro="open" aria-pressed="false">Abertas</button>
+                <button type="button" data-filtro="segura" aria-pressed="false">Seguras</button>
+              </div>
+
+              <div class="lista-app">
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">Wardriver_Lab</div><div class="detalhe">WPA2 · canal 6</div>
+                </div>
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">CASA_562</div><div class="detalhe">WPA2 · canal 1</div>
+                </div>
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">ZTE_5GHz_F1</div><div class="detalhe">WPA · canal 9</div>
+                </div>
+                <div class="linha-app aberta" data-tipo="open">
+                  <div class="nome">(oculta)</div><div class="detalhe">Aberta · canal 1</div>
+                </div>
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">BlueLink-IoT</div><div class="detalhe">WPA2 · canal 9</div>
+                </div>
+                <div class="linha-app aberta" data-tipo="open">
+                  <div class="nome">net_visitantes</div><div class="detalhe">Aberta · canal 11</div>
+                </div>
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">DLINK-AABBCC</div><div class="detalhe">WPA2 · canal 1</div>
+                </div>
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">Repetidor_Sala</div><div class="detalhe">WPA2 · canal 6</div>
+                </div>
+                <div class="linha-app" data-tipo="segura">
+                  <div class="nome">ESCRITORIO_01</div><div class="detalhe">WPA2 · canal 5</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <span>WARDRIVER</span>
+    <span>Aline &amp; Fernando · 2026</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

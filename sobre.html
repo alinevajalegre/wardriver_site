@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre - WARDRIVER</title>
+<meta name="description" content="O que é o WARDRIVER, o problema que ele resolve e o contexto do projeto, feito para o curso de IoT do IFSP Catanduva.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cabecalho">
+  <div class="container">
+    <a class="logo" href="index.html"><span class="ponto" aria-hidden="true"></span>WARDRIVER</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">
+      <span></span>
+      <span class="oculto">Abrir menu</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+      <ul>
+        <li><a href="index.html">início</a></li>
+        <li><a href="sobre.html" aria-current="page">sobre</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <section>
+    <div class="container topo">
+      <div>
+        <h1>Um dispositivo pequeno para mapear redes Wi-Fi da região</h1>
+        <p class="intro">O WARDRIVER é um projeto de faculdade que usa um ESP32 barato para detectar redes Wi-Fi próximas e mostrar num mapa quais estão abertas ou com criptografia fraca.</p>
+        <div class="numeros">
+          <a class="btn" href="index.html">Ver a demonstração</a>
+        </div>
+      </div>
+
+      <img class="terminal" src="img/terminal.png" alt="Simulação de saída de terminal durante uma coleta de rede: wardriver --iniciar-scan, procurando redes Wi-Fi por perto, rede encontrada com criptografia WPA2 no canal 6, GPS com fix ok, dados gravados no cartão SD.">
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="numeros">
+        <div class="numero">
+          <span class="valor">&lt; R$150</span>
+          <span class="legenda">custo de montagem do protótipo</span>
+        </div>
+        <div class="numero">
+          <span class="valor">3</span>
+          <span class="legenda">partes: dispositivo, rede e servidor</span>
+        </div>
+        <div class="numero">
+          <span class="valor">100%</span>
+          <span class="legenda">código aberto</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Por que a gente fez isso</h2>
+      <p>Rede aberta, senha fraca ou WPS ligado é mais comum do que parece, principalmente em casa e em comércio pequeno. O problema é que não existe uma forma fácil ou acessível de enxergar isso.</p>
+      <p>O WARDRIVER é o projeto integrador da pós em IoT do IFSP Catanduva, feito nas disciplinas de Desenvolvimento de Projetos I e II. A ideia surgiu de uma pergunta simples: dá pra saber, de um jeito barato, o quanto as redes Wi-Fi de um bairro estão expostas?</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Um sensor que mapeia as redes por onde passa</h2>
+      <p>O dispositivo é montado com um ESP32, que fica escutando os sinais que qualquer roteador transmite o tempo todo (os beacon frames). Pra cada rede encontrada, ele anota nome, tipo de criptografia, canal e se o WPS está ligado, junto com a posição do GPS.</p>
+      <p>Os dados vão sendo salvos num cartão microSD durante a coleta. Quando o dispositivo passa perto de uma rede conhecida, ele manda tudo pra um servidor que organiza os dados num mapa, mostrando onde estão as redes mais vulneráveis da região.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Aline &amp; Fernando</h2>
+    
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <span>WARDRIVER</span>
+    <span>Aline &amp; Fernando · 2026</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
