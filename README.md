@@ -2,6 +2,9 @@
 
 Site do projeto integrador do curso de pós em IoT do IFSP Catanduva. Mostra uma simulação do painel web e do app mobile do WARDRIVER, um dispositivo com ESP32 que mapeia redes Wi-Fi de uma região.
 
+## Acesso 
+https://alinevajalegre.github.io/wardriver_site/
+
 ## Como está organizado
 
 ```
